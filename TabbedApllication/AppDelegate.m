@@ -1,22 +1,32 @@
-//
 //  AppDelegate.m
 //  TabbedApllication
-//
 //  Created by iphtech9 on 02/02/15.
 //  Copyright (c) 2015 iphtech9. All rights reserved.
-//
 
 #import "AppDelegate.h"
-
+#import "ViewController.h"
+#import "SecondViewController.h"
 @interface AppDelegate ()
 
 @end
-
 @implementation AppDelegate
+@synthesize window;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    tabArray = [NSMutableArray array];
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    ViewController *viewController = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
+    viewController.title =@"First";
+    [tabArray addObject:viewController];
+    SecondViewController *secController = [[SecondViewController alloc]initWithNibName:@"SecondViewController" bundle:nil];
+    secController.title =@"Second";
+    [tabArray addObject:secController];
+    tabBarController = [[UITabBarController alloc]init];
+    tabBarController.viewControllers = tabArray;
+    self.window.rootViewController = tabBarController ;
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
